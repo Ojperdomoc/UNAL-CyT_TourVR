@@ -6,8 +6,9 @@ import {
 } from 'lucide-react';
 import type { CheckpointDef, Snapshot } from '../game/Engine';
 import { CHECKPOINTS } from '../game/Engine';
+import campusImg from '../assets/campus.jpg';
 
-export const CAMPUS_IMG = '/images/campus.jpg';
+export const CAMPUS_IMG = campusImg;
 
 export function formatTime(ms: number) {
   const s = Math.floor(ms / 1000);

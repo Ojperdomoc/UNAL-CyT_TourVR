@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import campusPoster from '../assets/campus.jpg';
 import { gameAudio } from './audio';
 
 export interface CheckpointDef {
@@ -249,7 +250,7 @@ export class Engine {
 
     try {
       const loader = new THREE.TextureLoader();
-      loader.load('/images/campus.jpg', (t) => {
+      loader.load(campusPoster, (t) => {
         t.colorSpace = THREE.SRGBColorSpace;
         this.posterTex = t;
         this.applyPosters();

@@ -1,0 +1,36 @@
+name: CI
+
+# Comprueba que el proyecto compila en cada pull request y en cada push a una
+# rama de trabajo (la publicación a Pages la hace deploy.yml desde main).
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: npm run build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v7
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Verificar tipos
+        run: npx tsc --noEmit
+
+      - name: Compilar el sitio
+        run: npm run build
